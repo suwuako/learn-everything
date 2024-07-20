@@ -1,0 +1,19 @@
+= TODO: =
+== personal todo ==
+- [X] c_ube
+- [o] vimwiki
+- [.] Assembly
+- [ ] virtualisation
+- [ ] wrasm
+- [ ] latex
+- [ ] neovim config
+
+== academic todo ==
+- [o] lecture 1 comp
+- [ ] lecture 2 comp
+- [ ] ass_2
+
+= works = 
+[[assembly/notes_asm/asm.wiki|assembly]]
+[[virtualisation/virt.wiki|virtualisation]]
+[[music/reharmonisations.wiki|music-reharmonisations]]

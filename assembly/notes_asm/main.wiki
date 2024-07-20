@@ -1,8 +1,0 @@
-= todos =
-* [ ] hello world
-
-== branches ==
-[[docs/number_systems.wiki|number_systems]]
-[[docs/computer_organisation|computer_organisation]]
-[[docs/registers|registers]]
-

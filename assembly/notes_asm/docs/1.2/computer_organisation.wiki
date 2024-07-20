@@ -29,19 +29,3 @@ I have an intel i7 10th gen that runs at 4.8Ghz, meaning that 4.8Ghz is the freq
 The clock beats at a constant rate, and the electronics of the CPU uses those beats to perform their operations
 correctly. The number of beats are called cycles. Also see [[registers]]
 
-=== real mode ===
-in real mode, memory is limited to only on emegabyte, with addresses being from 00000 -> FFFFF. These addresses need
-a 20 bit number, which doesn't fit an any 16-bit register - thus, you can use two 16-bit registers to determine an 
-address. The first register is the "selector", which is stored in a segment register, while the second 16-bit value
-is the "offset". The address referenced by a 32-bit selector:offset pair is computed by the formula:
-
-                                            16 * selector + offset
-                                            
-To multiply in hex, you just add a 0 to the right of the selector and add them together:
-
-047C:0048 =
-
-047C0
-+0048
------
- 4808
