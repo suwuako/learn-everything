@@ -1,0 +1,31 @@
+= computer organisation =
+
+== memory ==
+each byte in memory is labelled by a unique identifier as its address (location in memory)
+memory is mostly used in larger chunks than single bytes - think datatypes in C:
+
+int - 4 bytes (on my compiler lol)
+char - 1 byte
+double - 8 bytes
+
+
+all data stored in numerical; characters take that number and convert it to a character. There are a few conventions
+for characters, including ASCII and unicode; the key difference between ASCII and unicode is that ASCII (older)
+uses a single byte to store character output, while unicode uses 16 bits per character. 
+
+== cpu ==
+its a piece of metal in your computer that performs instructions. The instructions that they perform are pretty simple
+Instructions might require the data they act on to be in special storate locations in the cpu called registers - the
+cpu can access data stored in registers much faster than memory. However, registers are limited so you should take
+care to only store data in registers that you are using.
+
+The instructions a type of CPU takes is it's machine language. Macine languages have a much more basic structure than
+higher level languages. Machine language instructions are encoded as raw numbers, since CPUs are supposed to be able
+to decide an instruction quickly - machine language is designed with this in mind, and not to be deciphered by humans.
+Thus, programs written in other languages must be converted (compiled) into machine langauge of the cpu to be ran.
+
+Computers use a clock to synchronise the execution of instructions; the clock pulses at a fixed frequency (clock speed)
+I have an intel i7 10th gen that runs at 4.8Ghz, meaning that 4.8Ghz is the frequency of the clock in my cpu.
+The clock beats at a constant rate, and the electronics of the CPU uses those beats to perform their operations
+correctly. The number of beats are called cycles. Also see [[registers]]
+

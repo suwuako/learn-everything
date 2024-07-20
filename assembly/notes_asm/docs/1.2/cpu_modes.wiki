@@ -1,0 +1,64 @@
+= cpu modes =
+
+== tldr ==
+- segment registers
+    - segment registers are registers in memory that denote what memory is used for in different parts of a program
+- real modes
+    - real mode has small memory (1 mb (2^20^ bytes))
+    - valid addresses range from 00000 -> FFFFF
+    - a 20-bit number wont fit into these registers, since they are 16 bytes long; so they use two 16-bit values
+    - to determine an address; the first 16-bit is called the selector, and lives in a segment register. 
+    - the second part of the value can be stored in general memory and is called the offset
+- protected mode
+    - protected mode also makes use of selectors, but they instead store an index to a descriptor table
+    - a descriptor table is a table that holds entries of a program 
+    - if the program isn't being used, then its stored on disk - if it is, then its stored in memory.
+    - in 32-bit protected mode, segments are now split into 4-kilobyte sized pages and vram works with pages now.
+    - This is better because in 16-bit for segment registers, eitehr the WHOLE segment is loaded or none of t is.
+    - this isnt' really practical in modern computer architectures so we cut it down. 
+    - offsets are also now 32-bit.
+
+== real mode ==
+in real mode, memory is limited to only on emegabyte, with addresses being from 00000 -> FFFFF. These addresses need
+a 20 bit number, which doesn't fit an any 16-bit register - thus, you can use two 16-bit registers to determine an 
+address. The first register is the "selector", which is stored in a segment register, while the second 16-bit value
+is the "offset". The address referenced by a 32-bit selector:offset pair is computed by the formula:
+
+                                            16 * selector + offset
+                                            
+To multiply in hex, you just add a 0 to the right of the selector and add them together:
+
+047C:0048 =
+
+047C0
++0048
+-----
+ 4808
+
+== 16-bit protected mode ==
+in protected mode, selector values are interpreted differently than in real mode; in real mode, a selector value is a 
+is a number that prepresents physical memory. In protected mode, a selector value is an index to a descriptor table.
+A descriptor table is a data structure (and table) in memory that defines the processor's memory segments. In both 
+modes, programs are divided into segments - in real mode these segments are at fixed positions in physical memory 
+and the selector value denotes the paragraph number of the beginning of the segment. In protected mode, they aren't 
+at fixed positions in physical memory. They might not even need to be in memory. 
+
+This is because protected mode makes use of virtual memory; which is a system that only keeps the data and code in 
+memory that programs are currently using. Other data and code are stored in disk until they're used again. In 16-bit 
+protected mode, segments are moved between memory and disk. When a segment is returned to memory from disk, it will 
+probably be in a different sector of memory as it was before being moved to the disk. This is all done by the OS. 
+The program doens't need to be written for vram to work.
+
+in protected mode, each segment is assigned an entry in a descriptor table. This entry has all the information that 
+the system needs to know about the segment: (is it in memory?, if it is, where is it? access permissions 
+(i.e. read only)). The index of the entry of the segment is the selector value that is stored in segment registers 
+
+== 32-bit protected mode ==
+essentially the same as 16-bit, but offsets are now 32 bits, allowing an offset to range up to 4 billion, allowing 
+segments to have sizes up to 4 gigabytes
+
+segments can be divided into smaller 4k-sized units called pages. The vram uses pages now instead of segments. 
+This means that only parts of segments can be in memory at any one time. In 16-bit mode, either the entire segment 
+is in memory or none of it is. This isn't really practical with the larget segments that 32-bit mode allows.
+
+

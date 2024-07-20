@@ -1,0 +1,12 @@
+== I can't stop the loneliness ==
+
+melody structure:
+
+A-G#-A 
+A-G#-A-G#
+E-B-A-G#-G#-A 
+F#-G#-A D-A
+A-G#-F#-G#-A 
+
+reharmonising with II-V-I
+B-E-A
