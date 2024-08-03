@@ -1,19 +1,30 @@
 = TODO: =
 == personal todo ==
+=== programming ===
 - [X] c_ube
-- [o] vimwiki
-- [.] Assembly
-- [ ] virtualisation
+- [o] Assembly
 - [ ] wrasm
-- [ ] latex
+- [ ] helloworld os
+- [ ] breadboard cpu
+
+=== configs ===
+- [o] vimwiki
+- [o] eww
+- [O] latex
 - [ ] neovim config
+
+=== security ===
+- [ ] virtualisation
+- [ ] sandboxing
 
 == academic todo ==
 - [o] lecture 1 comp
 - [ ] lecture 2 comp
-- [ ] ass_2
+- [X] ass_2
+- [ ] tutor app
 
 = works = 
 [[assembly/notes_asm/asm.wiki|assembly]]
 [[virtualisation/virt.wiki|virtualisation]]
 [[music/reharmonisations.wiki|music-reharmonisations]]
+[[latex/latex.wiki|latex]]

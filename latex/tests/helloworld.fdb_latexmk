@@ -1,0 +1,16 @@
+# Fdb version 4
+["pdflatex"] 1721553873.64414 "helloworld.tex" "helloworld.pdf" "helloworld" 1721553873.83656 0
+  "/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1716849630 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texmf-dist/tex/latex/base/article.cls" 1716849630 20144 147463a6a579f4597269ef9565205cfe ""
+  "/usr/share/texmf-dist/tex/latex/base/size10.clo" 1716849630 8448 dbc0dbf4156c0bb9ba01a1c685d3bad0 ""
+  "/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1716849630 30006 3d512c0edd558928ddea1690180ef77e ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1716849630 41588 b43d3e860a4f94167ee1e725ff526a72 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1721067972.4151 5312047 b07fcd2a9090df96fc745b92a3db793b ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1721067970 7112995 e6d65ac99bf2568a07987c7f1c207567 ""
+  "helloworld.aux" 1721553873.82184 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "helloworld.tex" 1721553873.36851 144 a2572e4fe3fa70114b8c25d5a57c6626 ""
+  (generated)
+  "helloworld.aux"
+  "helloworld.log"
+  "helloworld.pdf"
+  (rewritten before read)
