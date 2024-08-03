@@ -1,0 +1,35 @@
+= input output =
+
+Interfacing with i/o is a ssytem dependent action, involving interfacing with the system's hardware.
+High level languages provide stdlibs that allow a uniform programming interfaces for I/O - assembly
+doesn't do that for you (no stdlibs), They must either directly access hardware (privilliged 
+operation in protected mode) or use whatever routines the os provides. 
+
+Its pretty common for assembly routines to be itnerfaced with C - this means that the assembly 
+code can make use of the C standard library and that the assembly code can make use of the C 
+I/O routies. There are rules for passing information ebtween routines that C uses though.
+
+Table 1.4 describes these routines. All these routines preserve the value of the registers except 
+for the read routines. These routines modify the value of the EAX register. 
+
+To use these routines, they need to include the file with informatoin that the assembler needs 
+to use them - we use %include in nasm. This line includes the file needed by the author's I/O 
+routines:
+
+%include "asm_io.inc"
+
+to use one of the print routines, you load EAX with the correct value and uses a CALL 
+instruction to invoke it - the CALL instruction is the same as a function call in a high 
+level lang; jumping execution to another section of code, but returns back to its origin. 
+
+Table 1.4
+
+| instruction  | action                                                                                                                 |
+| print_int    | prints to the screen the integer stored in EAX                                                                         |
+| print_char   | prints to the screen the characer whose ASXCII value is stored in AL                                                   |
+| print_string | prints to the screen the contents of the string at the address stored in EAX (needs to be a C type string (null term)) |
+| print_nl     | prints a newline                                                                                                       |
+| read_int     | reads an int from the keyboard and stores into EAX                                                                     |
+| read_char    | reads a char from the keybaord and stores its ascii value into EAX                                                     |
+
+
