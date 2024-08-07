@@ -19,7 +19,6 @@ print:
 	push rax
 	mov rbx, 0
 	call get_num_len
-	call print_len_msg
 
 	mov rax, [num]
 	mov rcx, 10
