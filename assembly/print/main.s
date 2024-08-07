@@ -1,5 +1,6 @@
 section .data 
     num dq 42
+    helloworld dq "hello, world!", 0x0a, 0x00
 section .text
 
 global _start
@@ -16,24 +17,19 @@ _start:
 print_num:
     ; currently: rsp -> address after call
     ; rsp + 8 -> [num]
-    mov rbp, rsp ; stores current stack pointer on the base pointer
-
-    mov rax, [rsp + 8]
-    mov rbx, 10
-    mov rdx, 0
-
-    div rbx
-    mov [rsp + 8], rax
-
-    mov rax, 4
-    mov rbx, 1
-    mov rcx, 48
-    mov rdx, 1
-    int 0x80
+    push rbp
+    mov rbp, rsp
     
-    mov rax, [rsp + 8]
-    cmp rax, 0    ; jumps if rsp doesn't hit 0
-    jg print_num
+    push "a"
+    push "b"
+
+    mov rax, 2
+    mov rdi, 10
+    mov rsi, rsp
+    mov rdx, 2
+
+    syscall
 
     mov rsp, rbp
+    pop rbp
     ret
