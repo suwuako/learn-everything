@@ -1,24 +1,70 @@
 section .data
 	num_len_msg dq "num_len: "	; len = 9
-	num	dq	1234567890
+	num	dq	12345678909876543
 section .text
 global _start
 _start:
+	call print
+
+
+	mov rax, 60
+	mov rdi, 0
+	syscall
+
+print:
+	push rsp	; rsp is now stored in rsp + 24
 	mov rax, [num]
+	mov rbx, 10
+	mul rbx			; LOL THIS IS A HORRIBLE HACK (shift digits left by one)
 	push rax
 	mov rbx, 0
 	call get_num_len
 	call print_len_msg
 
 	mov rax, [num]
+	mov rcx, 10
+	mul rcx
 	push rax
 	push rbx
 	call print_nums
+	add rsp, 24
+	mov rax, [rsp]
+	mov rsp, rax
+	ret
 
-
-	mov rax, 60
-	mov rdi, rbx
+; rbx contains the value to be printed
+print_digit:
+	push rbx
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, rsp
+	mov rdx, 1
 	syscall
+	pop rbx
+
+	ret
+
+;	gets the digit of the highest number
+;	i.e 123456 -> 1
+;	rsp + 24 contains len
+;	rsp + 32 contains nums
+;	stores the digit in rax
+get_digit:
+	mov rax, 1
+	mov rbx, 10
+	mov rcx, [rsp + 24]	; length
+	call exp
+
+	mov rbx, rax
+	mov rax, [rsp + 32]
+	div rbx
+	mov [rsp + 32], rdx
+	mov rbx, rax
+	mov rdx, 0
+
+	add rbx, 48
+
+	ret
 
 ;	prints the numbers
 ;	rsp + 8 ccontains length
@@ -26,46 +72,25 @@ _start:
 ;	we need [rsp + 8] to decrease by 1 every loop and rsp to lose the most sig digit
 print_nums:
 	mov rbp, rsp
+	push rbp
 
-	mov rdx, 0	; flush remainder
+	call get_digit
+	; lets test print
+	call print_digit
 
-	; setup for exp so that rax stores 10 ^ [len - 1]
-	mov rcx, [rsp + 8]
-	mov rbx, 10
-	mov rax, 1
-
+	mov rcx, [rsp + 16]
+	dec rcx
+	mov [rsp + 16], rcx
 	cmp rcx, 1
-	jg exp
 
-	
-	; store divisor in rbx, store data in rax
-	mov rbx, rax
-	mov rax, [rsp + 16]
-	div rbx
-
-	; dec len, store rem
-	mov rbx, [rsp + 8]
-	dec rbx
-	mov [rsp + 8], rbx
-	mov [rsp + 16], rdx
-
-	; store rax as string onto stack
-	add rax, 48
-	push rax
-	; print
-	mov rax, 1
-	mov rdi, 1
-	mov rsi, rsp
-	mov rdx, 1
-	syscall
-	sub rsp, 8
-
-	mov [rsp + 16], rdx
-	mov rsp, rbp
-	cmp rdx, 0
+	pop rsp
 	jne print_nums
 
+	mov rbx, 0x0a	; newline
+	call print_digit
+
 	ret
+
 
 ; uses exp_no stored in rcx and uses value in rbx
 ; spits out return in rax
@@ -75,7 +100,7 @@ exp:
 	mul rbx
 
 	cmp rcx, 1
-	jne exp
+	jg exp
 	ret
 
 ;	takes the number stored in rsp + 8 and finds the length of it

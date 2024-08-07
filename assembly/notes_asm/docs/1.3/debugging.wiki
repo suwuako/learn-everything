@@ -1,5 +1,0 @@
-= debugging =
-
-the authors library also contains some useful routines for debugging programs, which display 
-information about the state of the computer without modifying the state. They're really just 
-macros that preserve the state of hte CPU and make a subroutine call, and are defined in asm_io.inc
